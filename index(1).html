@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fceaf1">
+<title>A Little Game for Yam ♡</title>
+<style>
+:root{--pink:#f8dce8;--deep:#a45175;--rose:#c16d91;--ink:#70465a;--cream:#fff9fb}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:linear-gradient(145deg,#fff8fb,#fceaf1 55%,#f8e2ec);overflow-x:hidden}
+body:before{content:"♡  ✿  ♡  ✧  ♡";position:fixed;inset:auto 0 10px;text-align:center;color:#d99bb5;opacity:.28;font-size:30px;letter-spacing:18px;pointer-events:none}
+.wrap{width:min(720px,92%);margin:35px auto 60px}
+.card{background:rgba(255,255,255,.88);border:1px solid #f1cada;border-radius:25px;padding:clamp(22px,5vw,42px);box-shadow:0 15px 45px #b86c8a1c}
+.center{text-align:center}
+.eyebrow{letter-spacing:3px;text-transform:uppercase;font:11px Arial,sans-serif;color:#bd7895}
+h1{font-size:clamp(34px,8vw,55px);font-weight:normal;color:var(--deep);margin:10px 0}
+h2{font-size:clamp(24px,5vw,32px);font-weight:normal;color:var(--deep);margin:8px 0 15px}
+p{line-height:1.75;font-size:16px}
+.sub{color:#a86c85;font-size:14px}
+.heart{font-size:42px;color:#ce83a2;margin:8px}
+.btn{border:0;border-radius:30px;padding:13px 23px;background:var(--deep);color:white;font-size:15px;cursor:pointer;transition:.2s;margin-top:10px}
+.btn:hover{transform:translateY(-2px);background:#873d60}
+.btn.secondary{background:#f6e2eb;color:var(--deep)}
+.hidden{display:none!important}
+.progress{height:7px;background:#f4e2ea;border-radius:20px;overflow:hidden;margin:16px 0 25px}
+.bar{height:100%;width:0;background:linear-gradient(90deg,#d78eac,#a45175);transition:width .3s}
+input{width:100%;padding:15px 16px;border:1.5px solid #e9c4d4;border-radius:14px;background:#fffdfd;font:16px Arial,sans-serif;color:#70465a;outline:none;margin:12px 0 4px}
+input:focus{border-color:#bd7895;box-shadow:0 0 0 3px #f8e4ed}
+.hint{font:13px Arial,sans-serif;color:#b17a91}
+.feedback{min-height:25px;color:#b04f70;font:14px Arial,sans-serif;margin:8px 0}
+.note{background:#fff5f9;border:1px dashed #d99bb5;border-radius:18px;padding:22px;margin:18px 0}
+.note p{margin:5px 0}
+.tag{display:inline-block;background:#f8e5ed;color:#a45175;padding:7px 12px;border-radius:30px;font:11px Arial,sans-serif;letter-spacing:1px}
+.footer{font-size:13px;color:#b17a91;margin-top:25px}
+.confetti{font-size:27px;letter-spacing:8px}
+@media(max-width:480px){.wrap{margin:18px auto 40px}.card{border-radius:20px}.btn{width:100%}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="card center" id="welcome">
+  <div class="heart">♡</div>
+  <div class="eyebrow">a little something for you</div>
+  <h1>hey, my Yam ♡</h1>
+  <p>i made a little game just for you. answer a few questions about us and unlock the tiny messages i've hidden along the way.</p>
+  <p class="sub">six questions • six little surprises • one very loved girl</p>
+  <div class="note"><p>no pressure, baby. take your time. and yes, there might be a little teasing. 🤭</p></div>
+  <button class="btn" onclick="startGame()">let's play, baby ♡</button>
+  <div class="footer">from your lover, Mey.</div>
+</section>
+
+<section class="card hidden" id="quiz">
+  <div class="center"><span class="tag">OUR LITTLE SECRET GAME</span></div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <div class="sub" id="counter">QUESTION 1 OF 6</div>
+  <h2 id="question"></h2>
+  <p class="sub" id="hint"></p>
+  <input id="answer" type="text" autocomplete="off" placeholder="type your answer here..." />
+  <div class="feedback" id="feedback" aria-live="polite"></div>
+  <button class="btn" id="checkBtn" onclick="checkAnswer()">unlock my message ♡</button>
+  <div class="note hidden" id="unlocked">
+    <span class="tag">A LITTLE MESSAGE FOR YOU</span>
+    <p id="message"></p>
+    <button class="btn secondary" onclick="nextQuestion()">continue ♡</button>
+  </div>
+</section>
+
+<section class="card center hidden" id="final">
+  <div class="confetti">✿ ♡ ✿</div>
+  <span class="tag">YOU UNLOCKED EVERYTHING</span>
+  <h1>happy 2nd monthsary!</h1>
+  <h2>my baby, my Yam ♡</h2>
+  <div class="note">
+    <p>two months with you, and i'm still just as happy to have you in my life. sometimes, i still think about the moment i confessed my feelings and you told me that you liked me too. honestly, that will always be one of my favorite memories. i never knew that one moment could mean so much to me.</p>
+    <p>i hope you know how much i adore you. you're so pretty, so lovable, and so special to me. i love your little habits, your personality, your random stories, and even the times i annoy you by calling you boi. HAHAHA, sorry not sorry. 🤭</p>
+    <p>thank you for being part of my days, for making distance feel a little less difficult, and for giving me another reason to look forward to tomorrow.</p>
+    <p>i know we still have a lot to learn about each other, but i hope we continue growing together. i want to celebrate your little wins, listen to your stories, support your dreams, and make more memories with you.</p>
+    <p>always remember that you're loved, appreciated, and prayed for. i'll never get tired of reminding you how much you mean to me.</p>
+    <p>happy monthsary again, my baby. i love you so, so much. here's to more months, more memories, more laughter, and hopefully, more moments together without a screen between us.</p>
+    <p><strong>love, your Mey. ♡</strong></p>
+  </div>
+  <div class="note">
+    <span class="tag">ONE LAST THING, BOI 🤭</span>
+    <p>i hope you know that you're stuck with someone who will keep calling you baby. even when i tease you with boi, i'll always be your mey. i love you so much, my pretty girl. ♡</p>
+  </div>
+  <p class="sub">and if you ever need a reminder, come back to this little page. you're loved, baby.</p>
+  <div class="heart">♡</div>
+  <div class="footer">made with love, from Mey to Yam.</div>
+</section>
+</main>
+<script>
+const questions = [
+ {q:"What are the sweet nicknames I usually call you?",hint:"There are four of them... and one is just to tease you. 🤭",answers:["baby babe langga boi","baby babe langga and boi","baby, babe, langga, boi","langga baby babe boi","boi baby babe langga"],message:"baby, babe, langga… and BOI HAHAHA. yes, boi. don't ask why, i just love teasing you. but seriously, you're my favorite person to annoy. 🤭"},
+ {q:"What is my favorite thing about you?",hint:"It's not one thing you do. It's simply...",answers:["just being you","being you"],message:"it's literally just you, baby. your personality, your little habits, your random stories, everything. you're so pretty and lovable, and i hope you never forget that."},
+ {q:"How many cats do I have?",hint:"A single number...",answers:["8","eight"],message:"EIGHT little cats! HAHAHA. i hope you remember that because apparently, you need to know everything about your lover. 😭"},
+ {q:"What are the two things I always tell you?",hint:"Two little reminders I never get tired of saying.",answers:["i miss you i love you","i miss you and i love you","imissyou iloveyou","i miss you, i love you"],message:"because i'll never get tired of saying those words. i miss you more than you know, and i love you more than these little messages can explain."},
+ {q:"What is one of my favorite memories of us?",hint:"Think about the moment I told you how I felt... 🤭",answers:["my last confession when you said you liked me too","my last confession","when i confessed and you said you liked me too","when you said you liked me too","my confession when you said you liked me too"],message:"THIS ONEEE! 🤭 i still remember that moment. i was so happy knowing that the person i liked actually liked me back. if only you knew how much that moment meant to me. i'd happily relive it again and again."},
+ {q:"Who will I keep choosing, no matter the distance?",hint:"The person reading this.",answers:["you","you my baby","you my love","yam"],message:"obviously, YOU, BOI. HAHAHA. distance, busy days, and everything in between. you're still the person i want to make memories with."}
+];
+let current=0;
+const normalize=s=>s.toLowerCase().replace(/[.,!?'"’]/g,"").replace(/\band\b/g," ").replace(/\s+/g," ").trim();
+function startGame(){document.getElementById('welcome').classList.add('hidden');document.getElementById('quiz').classList.remove('hidden');showQuestion();}
+function showQuestion(){
+ const q=questions[current];
+ document.getElementById('counter').textContent=`QUESTION ${current+1} OF ${questions.length}`;
+ document.getElementById('bar').style.width=(current/questions.length*100)+'%';
+ document.getElementById('question').textContent=q.q;
+ document.getElementById('hint').textContent=q.hint;
+ const input=document.getElementById('answer');input.value='';input.disabled=false;input.focus();
+ document.getElementById('feedback').textContent='';
+ document.getElementById('unlocked').classList.add('hidden');
+ document.getElementById('checkBtn').classList.remove('hidden');
+}
+function checkAnswer(){
+ const typed=normalize(document.getElementById('answer').value);
+ if(!typed){document.getElementById('feedback').textContent='type your answer first, baby. ♡';return;}
+ const q=questions[current];
+ let ok=q.answers.some(a=>normalize(a)===typed);
+ if(current===0) ok=typed.includes('baby')&&typed.includes('babe')&&typed.includes('langga')&&typed.includes('boi');
+ if(current===3) ok=typed.includes('i miss you')&&typed.includes('i love you');
+ if(!ok){document.getElementById('feedback').textContent='not quite, my love. try again! you can do it. ♡';return;}
+ document.getElementById('answer').disabled=true;
+ document.getElementById('feedback').textContent='you got it! ♡';
+ document.getElementById('message').textContent=q.message;
+ document.getElementById('unlocked').classList.remove('hidden');
+ document.getElementById('checkBtn').classList.add('hidden');
+ document.getElementById('bar').style.width=((current+1)/questions.length*100)+'%';
+}
+function nextQuestion(){
+ current++;
+ if(current<questions.length){showQuestion();}
+ else{document.getElementById('quiz').classList.add('hidden');document.getElementById('final').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});}
+}
+document.getElementById('answer').addEventListener('keydown',e=>{if(e.key==='Enter'&&!document.getElementById('checkBtn').classList.contains('hidden'))checkAnswer();});
+</script>
+</body>
+</html>
